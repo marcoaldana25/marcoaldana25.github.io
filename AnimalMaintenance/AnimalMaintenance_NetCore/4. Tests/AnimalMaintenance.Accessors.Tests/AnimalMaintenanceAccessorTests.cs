@@ -76,7 +76,7 @@
             }
         }
 
-        [Fact]test
+        [Fact]
         public void GetAnimal_NoAnimalWithMatchingId_ShouldReturnNull()
         {
             // Arrange
