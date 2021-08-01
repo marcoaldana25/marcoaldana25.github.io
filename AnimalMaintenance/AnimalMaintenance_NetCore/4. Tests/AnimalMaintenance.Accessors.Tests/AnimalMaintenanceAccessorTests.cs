@@ -219,5 +219,50 @@
                     .DeleteAnimal(5000));
             }
         }
+
+        [Fact]
+        public void DeleteAnimal_ValidEntityFound_ShouldRemoveFromDatabase()
+        {
+            using (var animalMaintenanceDatabaseContext = new AnimalMaintenanceDatabaseContext(DbContextOptions))
+            {
+                const string animalName = "Dixon";
+
+                var animalToAdd = new Animal
+                {
+                    AnimalType = "Frog",
+                    Breed = "African Dwarf",
+                    Color = "Grey",
+                    DateOfBirth = new DateTime(2020, 12, 25),
+                    IncomeType = "Newborn",
+                    OutcomeType = "Adoption",
+                    SexUponIncome = "Intact Male",
+                    SexUponOutcome = "Intact Male",
+                    Name = animalName
+                };
+
+                var animalMaintenanceAccessor = new AnimalMaintenanceAccessor(
+                    animalMaintenanceDatabaseContext);
+
+                animalMaintenanceAccessor
+                    .AddAnimal(animalToAdd);
+
+                var addedAnimalId = animalMaintenanceDatabaseContext
+                    .Animals
+                    .FirstOrDefault(animal => animal.Name.Equals(animalName))?
+                    .Id;
+
+                Assert.NotNull(addedAnimalId);
+
+                // Act
+                animalMaintenanceAccessor
+                    .DeleteAnimal(addedAnimalId.Value);
+
+                // Assert
+                Assert.Null(
+                    animalMaintenanceDatabaseContext
+                        .Animals
+                        .FirstOrDefault(animal => animal.Id.Equals(addedAnimalId)));
+            }
+        }
     }
 }
