@@ -156,6 +156,56 @@
         }
 
         [Fact]
+        public void UpdateAnimal_ValidAnimalFound_ShouldUpdateWithNewProperties()
+        {
+            // Arrange
+            using (var animalMaintenanceDatabaseContext = new AnimalMaintenanceDatabaseContext(DbContextOptions))
+            {
+                const string animalName = "Leroy";
+
+                var animalToAdd = new Animal
+                {
+                    AnimalType = "Frog",
+                    Breed = "African Dwarf",
+                    Color = "Grey",
+                    DateOfBirth = new DateTime(2020, 12, 25),
+                    IncomeType = "Newborn",
+                    OutcomeType = "Adoption",
+                    SexUponIncome = "Intact Male",
+                    SexUponOutcome = "Intact Male",
+                    Name = animalName
+                };
+
+                var animalMaintenanceAccessor = new AnimalMaintenanceAccessor(
+                    animalMaintenanceDatabaseContext);
+
+                animalMaintenanceAccessor
+                    .AddAnimal(animalToAdd);
+
+                // Get added entity from in memory db and update properties
+                var addedEntity = animalMaintenanceDatabaseContext
+                    .Animals
+                    .FirstOrDefault(animal => animal.Name.Equals(animalName));
+
+                Assert.NotNull(addedEntity);
+
+                // Update properties
+                addedEntity
+                    .Color = "Green";
+
+                // Act: Perform update
+                animalMaintenanceAccessor
+                    .UpdateAnimal(addedEntity);
+
+                // Assert
+                Assert.NotNull(
+                    animalMaintenanceDatabaseContext
+                        .Animals
+                        .FirstOrDefault(animal => animal.Color.Equals("Green")));
+            }
+        }
+
+        [Fact]
         public void DeleteAnimal_NoAnimalToDelete_ShouldThrowDbUpdateException()
         {
             // Arrange
