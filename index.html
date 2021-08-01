@@ -3,7 +3,16 @@ layout: default
 ---
 
 <body>
-	<h1>Hello World!</h1>
+	<p>
+		Hello! Thank you for visiting my Computer Science Capstone porfolio! The below contents will describe the work I've completed to re-engineer an existing application developed at Southern New Hampshire Univeristy as part of our course curriculum. It will be split into the following categories:
+		<ul>
+			<li>Performing a Code Review</li>
+			<li>Narrative One: Software Design/Engineering</li>
+			<li>Narrative Two: Data Structures and Algorithms</li>
+			<li>Narrative Three: Databases</li>
+			<li>Professional Self-Reflections</li>
+		</ul>
+	</p>
 	<h3>Performing a Code Review</h3>
 	<p>
 		In Milestone Two for CS-499, we performed a code review that covers the artifact details we plan to revist for the final project. Below is a video that captures me performing a code review 
@@ -16,7 +25,26 @@ layout: default
 	<p>
 		The original project I've decieded to re-engineer is a Python script that facilitates CRUD operations on a MongoDB database named 'Animals'.
 		For my final project, I've opted to re-write this entire application and port it to a C# application written in .Net Core 3.1. Below is a overview of how the call chain now occurs within the applicaiton.<br/>
-		<img src="./Documentation/AnimalMaintenanceArchitecture.png" width="125" height="400" style="display: block; margin-left: auto; margin-right: auto; width=50%;"/>
+		<img src="./Documentation/AnimalMaintenanceArchitecture.png" width="125" height="400" style="display: block; margin-left: auto; margin-right: auto; width=50%;"/><br/>
+		
+		As part of the re-engineering process, I've introducted a structure that will abstract the data layer away from the client layer. To do this, I've introduced three new projects within the solution. They are as follows
+		<ul>
+			<li>Animal Maintenance Client: Responsible for front end displays, injecting references, and application startup.</li>
+			<li>Animal Maintenance Mangager: Responsible for directing workflow of application</li>
+			<li>Animal Maintenance Accessor: Responsible for calling data source and facilitating database creation using Entity Framework</li>
+		</ul>
+	</p>
+	<h5>General Updates for the Software Design/Engineering Narrative</h5>
+	<p>
+		The intent of this narrative is to utilize the skills I've learned thus far as a Software Engineer and apply them to re-engineer an existing application. Some key points I'd like to address that I've accomplished as part of the project include the following
+		<ul>
+			<li>Creating more specifically named varaibles</li>
+			<li>Covering the application with an appropriate level of Unit Test coverage</li>
+			<li>Implement constructor based Dependency Injection to isolate code and remove hard dependencies</li>
+			<li>Translate entire application into a C# driven app.</li>
+		</ul>
+		
+		A link to the application as checked into GitHub source control can be seen [Here](https://github.com/marcoaldana25/marcoaldana25.github.io/tree/main/AnimalMaintenance/AnimalMaintenance_NetCore)
 	</p>
 </body>
 
