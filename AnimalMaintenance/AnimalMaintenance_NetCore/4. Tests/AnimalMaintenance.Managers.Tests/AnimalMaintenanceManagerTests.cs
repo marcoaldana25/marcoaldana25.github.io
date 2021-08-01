@@ -83,5 +83,94 @@
                     accessor => accessor.GetAnimal(It.IsAny<int>()),
                     Times.Once);
         }
+
+        [Fact]
+        public void AddAnimal_ShouldMapAndAddAnimal()
+        {
+            // Arrange
+            var mockMapper = new Mock<IMapper>(MockBehavior.Strict);
+            mockMapper
+                .Setup(mapper => mapper.Map<Accessors.Entities.Animal>(It.IsAny<Animal>()))
+                .Returns(new Accessors.Entities.Animal());
+
+            var mockAnimalMaintenanceAccessor = new Mock<IAnimalMaintenanceAccessor>(MockBehavior.Strict);
+            mockAnimalMaintenanceAccessor
+                .Setup(accessor => accessor.AddAnimal(It.IsAny<Accessors.Entities.Animal>()));
+
+            var animalMaintenanceManager = new AnimalMaintenanceManager(
+                mockAnimalMaintenanceAccessor.Object,
+                mockMapper.Object);
+
+            // Act
+            animalMaintenanceManager
+                .AddAnimal(new Animal());
+
+            // Assert/Verify
+            mockMapper
+                .Verify(
+                    mapper => mapper.Map<Accessors.Entities.Animal>(It.IsAny<Animal>()),
+                    Times.Once);
+
+            mockAnimalMaintenanceAccessor
+                .Verify(
+                    accessor => accessor.AddAnimal(It.IsAny<Accessors.Entities.Animal>()),
+                    Times.Once);
+        }
+
+        [Fact]
+        public void UpdateAnimal_ShouldMapAndUpdateAnimal()
+        {
+            // Arrange
+            var mockMapper = new Mock<IMapper>(MockBehavior.Strict);
+            mockMapper
+                .Setup(mapper => mapper.Map<Accessors.Entities.Animal>(It.IsAny<Animal>()))
+                .Returns(new Accessors.Entities.Animal());
+
+            var mockAnimalMaintenanceAccessor = new Mock<IAnimalMaintenanceAccessor>(MockBehavior.Strict);
+            mockAnimalMaintenanceAccessor
+                .Setup(accessor => accessor.UpdateAnimal(It.IsAny<Accessors.Entities.Animal>()));
+
+            var animalMaintenanceManager = new AnimalMaintenanceManager(
+                mockAnimalMaintenanceAccessor.Object,
+                mockMapper.Object);
+
+            // Act
+            animalMaintenanceManager
+                .UpdateAnimal(new Animal());
+
+            // Assert/Verify
+            mockMapper
+                .Verify(
+                    mapper => mapper.Map<Accessors.Entities.Animal>(It.IsAny<Animal>()),
+                    Times.Once);
+
+            mockAnimalMaintenanceAccessor
+                .Verify(
+                    accessor => accessor.UpdateAnimal(It.IsAny<Accessors.Entities.Animal>()),
+                    Times.Once);
+        }
+
+        [Fact]
+        public void DeleteAnimal_ShouldDelete()
+        {
+            // Arrange
+            var mockAnimalMaintenanceAccessor = new Mock<IAnimalMaintenanceAccessor>(MockBehavior.Strict);
+            mockAnimalMaintenanceAccessor
+                .Setup(accessor => accessor.DeleteAnimal(It.IsAny<int>()));
+
+            var animalMaintenanceManager = new AnimalMaintenanceManager(
+                mockAnimalMaintenanceAccessor.Object,
+                null);
+
+            // Act
+            animalMaintenanceManager
+                .DeleteAnimal(1);
+
+            // Assert
+            mockAnimalMaintenanceAccessor
+                .Verify(
+                    accessor => accessor.DeleteAnimal(It.IsAny<int>()),
+                    Times.Once);
+        }
     }
 }
