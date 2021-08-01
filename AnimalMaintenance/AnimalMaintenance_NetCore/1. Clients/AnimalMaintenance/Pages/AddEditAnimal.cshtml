@@ -1,0 +1,63 @@
+﻿@page
+@model AnimalMaintenance.Pages.AddAnimalModel
+@{
+}
+
+@if (Model.IsEdit)
+{
+    <h1>Edit your animal record:</h1>
+}
+else
+{
+    <h1>Add a new Animal record:</h1>
+}
+
+
+<form method="post">
+    @if (Model.IsEdit)
+    {
+        <input type="hidden" asp-for="Animal.Id" value="@Model.Animal.Id"/>
+        <input type="hidden" asp-for="IsEdit" value="true"/>
+    }
+    <div class="form-group">
+        <label>@Html.DisplayNameFor(model => model.Animal.AnimalType)</label>
+        <input asp-for="Animal.AnimalType" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label>@Html.DisplayNameFor(model => model.Animal.Breed)</label>
+        <input asp-for="Animal.Breed" class="form-control"/>
+        <br/>
+    </div>
+    <div class="form-group">
+        <label>@Html.DisplayNameFor(model => model.Animal.Color)</label>
+        <input asp-for="Animal.Color" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label>@Html.DisplayNameFor(model => model.Animal.DateOfBirth)</label>
+        <input asp-for="Animal.DateOfBirth" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label>@Html.DisplayNameFor(model => model.Animal.Name)</label>
+        <input asp-for="Animal.Name" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label>@Html.DisplayNameFor(model => model.Animal.IncomeType)</label>
+        <input asp-for="Animal.IncomeType" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label>@Html.DisplayNameFor(model => model.Animal.SexUponIncome)</label>
+        <input asp-for="Animal.SexUponIncome" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label>@Html.DisplayNameFor(model => model.Animal.OutcomeType)</label>
+        <input asp-for="Animal.OutcomeType" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label>@Html.DisplayNameFor(model => model.Animal.SexUponOutcome)</label>
+        <input asp-for="Animal.SexUponOutcome" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <input type="submit"/>
+    </div>
+</form>
+

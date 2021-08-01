@@ -1,0 +1,60 @@
+﻿@page
+@using AnimalMaintenance.Managers.DataTransferObjects
+@using AnimalMaintenance.ExtensionMethods
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<h1>Welcome to your Animal Maintenance Application!</h1>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">@nameof(Animal.AnimalType).GetDisplayName()</th>
+        <th scope="col">@nameof(Animal.Breed).GetDisplayName()</th>
+        <th scope="col">@nameof(Animal.Color).GetDisplayName()</th>
+        <th scope="col">@nameof(Animal.DateOfBirth).GetDisplayName()</th>
+        <th scope="col">@nameof(Animal.Name).GetDisplayName()</th>
+        <th scope="col">@nameof(Animal.IncomeType).GetDisplayName()</th>
+        <th scope="col">@nameof(Animal.SexUponIncome).GetDisplayName()</th>
+        <th scope="col">@nameof(Animal.OutcomeType).GetDisplayName()</th>
+        <th scope="col">@nameof(Animal.SexUponOutcome).GetDisplayName()</th>
+        <th scope="col">Update Record</th>
+        <th scope="col">Delete Record</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var animal in Model.AllAnimals)
+    {
+        <tr scope="row">
+            <td>@animal.AnimalType</td>
+            <td>@animal.Breed</td>
+            <td>@animal.Color</td>
+            <td>@animal.DateOfBirth.ToShortDateString()</td>
+            <td>@animal.Name</td>
+            <td>@animal.IncomeType</td>
+            <td>@animal.SexUponIncome</td>
+            <td>@animal.OutcomeType</td>
+            <td>@animal.SexUponOutcome</td>
+            <td>
+
+                <form asp-page-handler="update" method="post">
+                    <button class="btn btn-default">
+                        Update
+                    </button>
+                    <input type="hidden" name="id" value="@animal.Id"/>
+                </form>
+            </td>
+            <td>
+                <form asp-page-handler="delete" method="post" value="@animal.Id">
+                    <button class="btn btn-default">
+                        Delete
+                    </button>
+                    <input type="hidden" name="id" value="@animal.Id" />
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
