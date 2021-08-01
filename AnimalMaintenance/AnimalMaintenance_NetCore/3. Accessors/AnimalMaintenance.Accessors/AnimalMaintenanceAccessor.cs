@@ -5,6 +5,7 @@
     using System.Linq;
     using Database;
     using Entities;
+    using Microsoft.EntityFrameworkCore;
 
     public class AnimalMaintenanceAccessor : IAnimalMaintenanceAccessor
     {
@@ -51,7 +52,8 @@
 
             if (animalToUpdate is null)
             {
-                return;
+                throw new DbUpdateException(
+                    $"{nameof(animalToUpdate)} cannot be null when attempting to update a record.");
             }
 
             AnimalMaintenanceDatabaseContext
@@ -69,7 +71,7 @@
 
             if (animalToDelete is null)
             {
-                return;
+                throw new DbUpdateException("No valid Animal entity to delete.");
             }
 
             AnimalMaintenanceDatabaseContext

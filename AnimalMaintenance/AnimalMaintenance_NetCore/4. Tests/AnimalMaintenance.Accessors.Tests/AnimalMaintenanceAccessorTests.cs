@@ -139,5 +139,35 @@
                     .FirstOrDefault(animal => animal.Name.Equals(animalName)));
             }
         }
+
+        [Fact]
+        public void UpdateAnimal_NoAnimalToUpdate_ShouldThrowDbUpdateException()
+        {
+            // Arrange
+            using (var animalMaintenanceDatabaseContext = new AnimalMaintenanceDatabaseContext(DbContextOptions))
+            {
+                var animalMaintenanceAccessor = new AnimalMaintenanceAccessor(
+                    animalMaintenanceDatabaseContext);
+
+                // Act & Assert
+                Assert.Throws<DbUpdateException>(() => animalMaintenanceAccessor
+                    .UpdateAnimal(new Animal{Id = 1000}));
+            }
+        }
+
+        [Fact]
+        public void DeleteAnimal_NoAnimalToDelete_ShouldThrowDbUpdateException()
+        {
+            // Arrange
+            using (var animalMaintenanceDatabaseContext = new AnimalMaintenanceDatabaseContext(DbContextOptions))
+            {
+                var animalMaintenanceAccessor = new AnimalMaintenanceAccessor(
+                    animalMaintenanceDatabaseContext);
+
+                // Act & Assert
+                Assert.Throws<DbUpdateException>(() => animalMaintenanceAccessor
+                    .DeleteAnimal(5000));
+            }
+        }
     }
 }
