@@ -91,7 +91,7 @@ layout: default
 		
 		More information on working with Entity Framework Core can be found from Microsoft documentation here <a href="https://docs.microsoft.com/en-us/ef/core/">Working with Entity Framework Core</a>
 		
-		<h4>Setting up a new Databse instance</h4>
+		<h4>Setting up a new Database instance</h4>
 		This section will briefly cover the steps I took to create this AnimalMaintenance database structure. First, I installed the necessary NuGet packages to work with EntityFrameworkCore to the Accessors layer of the application. The NuGets I have installed are as follows:
 		<ul>
 			<li>Microsoft.EntityFrameworkCore - Version 5.0.9</li>
@@ -101,6 +101,11 @@ layout: default
 		</ul>
 		I created an Entity class with the necessary data annotations seen in the Entity screenshot above. I then created a class that extends off of EntityFrameworkCore's DbContext class. This context class should specify any database tables as DbSet<EntityType> so that EntityFrameworkCore will know to create database tables for these DbSets. A screenshot of the AnimalMaintenanceDbContext can be seen here <img src="./Documentation/AnimalDbContext.png" width="650" height="300" style="display: block; margin-left: auto; margin-right: auto; width=50%;"/><br/></br>
 		Here is a link to the actual class as hosted in GitHub - <a href="https://github.com/marcoaldana25/marcoaldana25.github.io/blob/main/AnimalMaintenance/AnimalMaintenance_NetCore/3.%20Accessors/AnimalMaintenance.Accessors/Database/AnimalMaintenanceDatabaseContext.cs">AnimalMaintenanceDbContext.cs</a>
+		<br/><br/>
+		After creating these classes, I then needed to setup the Dependency Injection for this database context. I was able to do this by adding the Microsoft.EntityFrameworkCore Nuget into the Client Layer, and used the following code to inject the db context with a connection string that can be found in the appsettings.json file. <br/>
+		<code>services<br/>
+                &nbsp;&nbsp;&nbsp;.AddDbContext<AnimalMaintenanceDatabaseContext>(<br/>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;options => options.UseSqlServer(configuration.GetConnectionString("AnimalMaintenanceConnectionString")));</code>
 	</p>
 	<p>
 		<h4>Azure Data Studio</h4>
