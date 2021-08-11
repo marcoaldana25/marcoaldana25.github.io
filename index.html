@@ -105,7 +105,17 @@ layout: default
 		After creating these classes, I then needed to setup the Dependency Injection for this database context. I was able to do this by adding the Microsoft.EntityFrameworkCore Nuget into the Client Layer, and used the following code to inject the db context with a connection string that can be found in the appsettings.json file. <br/>
 		<code>services<br/>
                 &nbsp;&nbsp;&nbsp;.AddDbContext<AnimalMaintenanceDatabaseContext>(<br/>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;options => options.UseSqlServer(configuration.GetConnectionString("AnimalMaintenanceConnectionString")));</code>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;options => options.UseSqlServer(configuration.GetConnectionString("AnimalMaintenanceConnectionString")));
+		</code>
+		<br/>
+		<br/>
+		With everything in place, I was now able to use the Package Manager Console with the console's startup project set to the Accessor project and run the following command:<br/>
+		<code>Add-Migration InitialCreate</code><br/>
+		After executing this, EntityFrameworkCore automatically generates a script which it will use to scaffold out the necessary items for creating the DbSet with any constraints defined. The InitialCreate migration can be viewed here - <a href="https://github.com/marcoaldana25/marcoaldana25.github.io/blob/main/AnimalMaintenance/AnimalMaintenance_NetCore/3.%20Accessors/AnimalMaintenance.Accessors/Migrations/20210725212320_InitialCreate.cs">Initial Create Migration</a>
+		After executing Add-Migration, all that remains is to run <code>update-databse</code> to allow Entity Framework to propogate these changes onto the acutal database.
+		<br/>
+		<br/>
+		It is important to note though that originally I did not capture the constraints seen in the Entity class. This is the beauty of working with EntityFrameworkCore as all I needed to do was to add the data annotations, the repeat the process to create a new migration. After a successful build, I was able to update the changes we now see. 
 	</p>
 	<p>
 		<h4>Azure Data Studio</h4>
