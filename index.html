@@ -13,7 +13,7 @@ layout: default
 			<li>Professional Self-Reflections</li>
 		</ul>
 	</p>
-	<h3>Performing a Code Review</h3>
+	<h2>Performing a Code Review</h2>
 	<p>
 		In Milestone Two for CS-499, we performed a code review that covers the artifact details we plan to revist for the final project. Below is a video that captures me performing a code review 
 		over my plans to incorperate Software Design/Engineering, Data Structures and Algorithms, and Databases into a cohesive final project.
@@ -21,7 +21,7 @@ layout: default
 	<iframe width="500" height="300" src="./Files/Milestone One - Code Review.mp4">
 	</iframe>
 	
-	<h3>Narrative One: Software Design/Engineering Artifact</h3>
+	<h2>Narrative One: Software Design/Engineering Artifact</h2>
 	<p>
 		The original project I've decieded to re-engineer is a Python script that facilitates CRUD operations on a MongoDB database named 'Animals'.
 		For my final project, I've opted to re-write this entire application and port it to a C# application written in .Net Core 3.1. Below is a overview of how the call chain now occurs within the applicaiton.<br/>
@@ -46,11 +46,12 @@ layout: default
 		
 		A link to the application as checked into GitHub source control can be seen <a href="https://github.com/marcoaldana25/marcoaldana25.github.io/tree/main/AnimalMaintenance/AnimalMaintenance_NetCore">Here</a>.
 	</p>
-	<h3>Narrative Two: Data Structures and Algorithms</h3>
+	<h2>Narrative Two: Data Structures and Algorithms</h2>
 	<p>
 		For the second narrative in our final project, we will cover my changes made to the CS-340 Client/Server Development Animal Maintenance application and how I've introduced a data strucure that previously was not there. For the original project, we used a MongoDB database connection and populated an 'Animals' collection using a provided Excel sheet per the class materials. This provided us with essentially no flexibility in terms of how we managed or manipulated the data.
 		
 		<h4>Animal Data Structure</h4>
+		The Animal Data Transfer Object I will be referring to can be viewed <a href="https://github.com/marcoaldana25/marcoaldana25.github.io/blob/main/AnimalMaintenance/AnimalMaintenance_NetCore/2.%20Managers/AnimalMaintenance.Managers/DataTransferObjects/Animal.cs">here</a>
 		I've defined the animal strucutre for my application as follows:
 		<ul>
 			<li>Id: Primary Key. Also used to easily update an existing entity, or delete an existing entity.</li>
@@ -66,6 +67,19 @@ layout: default
 		</br>
 		Each property on the Animal Data Structure contains a display attribute which is used for the user interface. An example of what the animal user interface looks like can be seen below:
 		<img src="./Documentation/AnimalMaintenanceUI.png" width="640" height="420" style="display: block; margin-left: auto; margin-right: auto; width=50%;"/>
+	</p>
+	<h4>Algorithms</h4>
+	<p>
+		The algorithms within this application are nothing revolutionary. They are merely an attempt at re-engineering the existing behavior from the original Python script into a .Net Core 3.1 application. Most of the work revolves around basic Create Read Update and Delete functions which live in the Accessor layer of the application. Here is a link to the Accessor class which is responsible for the main functionality of the application - <a href="https://github.com/marcoaldana25/marcoaldana25.github.io/blob/main/AnimalMaintenance/AnimalMaintenance_NetCore/3.%20Accessors/AnimalMaintenance.Accessors/AnimalMaintenanceAccessor.cs">AnimalMaintenanceAccessor.cs</a>
+		The methods within this class are as follow:
+		<ul>
+			<li>GetAnimals: Responsible for returning a list of all present animals within the AnimalMaintenance database.</li>
+			<li>GetAnimal: Responsible for returning a single animal from the AnimalMaintenance database with the corresponding Id.</li>
+			<li>AddAnimal: Responsible for adding a new animal record into the AnimalMaintenance database.</li>
+			<li>UpdateAnimal: Responsible for updating an existing animal record in the Animal Maintenance database.</li>
+			<li>DeleteAnimal: Responsible for removing an existing animal record in the Animal Maintenance database.</li>
+		</ul>
+		One of the standards I've learned within my time at Southern New Hampshire University is the importance of comments within code. Comments act as a quick way for others to understand what a certain function is doing. Although the functions I've introduced here are fairly self-explanatory through naming conventions, I have added method level comments on what these functions do onto the interface that AnimalMaintenanceAccessor.cs inherits from. The reasoning on doing this instead of the actual class itself is that adding the method comments on the interface level allow the comments to appear when implementing it in the code. The interface for AnimalMaintenanceAccessor.cs can be seen <a href="https://github.com/marcoaldana25/marcoaldana25.github.io/blob/main/AnimalMaintenance/AnimalMaintenance_NetCore/3.%20Accessors/AnimalMaintenance.Accessors/IAnimalMaintenanceAccessor.cs">here.</a>
 	</p>
 </body>
 
