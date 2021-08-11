@@ -8,18 +8,22 @@
         public int Id { get; set; }
 
         [Display(Name="Animal Type")]
+        [MaxLength(30)]
         public string AnimalType { get; set; }
 
         [Display(Name="Breed")]
+        [MaxLength(50)]
         public string Breed { get; set; }
 
         [Display(Name="Color")]
+        [MaxLength(50)]
         public string Color { get; set; }
 
         [Display(Name="Date of Birth")]
         public DateTime DateOfBirth { get; set; }
 
         [Display(Name="Animal Name")]
+        [MaxLength(100)]
         public string Name { get; set; }
 
         [Display(Name="Income Type")]

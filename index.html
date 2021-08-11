@@ -46,5 +46,26 @@ layout: default
 		
 		A link to the application as checked into GitHub source control can be seen <a href="https://github.com/marcoaldana25/marcoaldana25.github.io/tree/main/AnimalMaintenance/AnimalMaintenance_NetCore">Here</a>.
 	</p>
+	<h3>Narrative Two: Data Structures and Algorithms</h3>
+	<p>
+		For the second narrative in our final project, we will cover my changes made to the CS-340 Client/Server Development Animal Maintenance application and how I've introduced a data strucure that previously was not there. For the original project, we used a MongoDB database connection and populated an 'Animals' collection using a provided Excel sheet per the class materials. This provided us with essentially no flexibility in terms of how we managed or manipulated the data.
+		
+		<h4>Animal Data Structure</h4>
+		I've defined the animal strucutre for my application as follows:
+		<ul>
+			<li>Id: Primary Key. Also used to easily update an existing entity, or delete an existing entity.</li>
+			<li>Animal Type: Used as a means to identify the animal (Dog, Cat, etc.)</li>
+			<li>Breed: Used to specify further information on the animal being maintained.</li>
+			<li>Color: Basic color of the animal</li>
+			<li>Date of Birth: Estimated Date of Birth of the animal being maintained</li>
+			<li>Income Type: Not Required, used as a means to keep track of how the animal was obtained.</li>
+			<li>Sex Upon Income: Not Required, used as a means to keep track of what sex the animal originally came in as.</li>
+			<li>Outcome Type: Not Required, used as a means to keep track of the outcome of the animal (Adoption, etc).</li>
+			<li>Sex Upon Outcome: Not Required, used as a means to keep track of the outgoing sex of the animal.</li>
+		</ul>
+		</br>
+		Each property on the Animal Data Structure contains a display attribute which is used for the user interface. An example of what the animal user interface looks like can be seen below:
+		<img src="./Documentation/AnimalMaintenanceUI.png" width="900" height="600" style="display: block; margin-left: auto; margin-right: auto; width=50%;"/>
+	</p>
 </body>
 

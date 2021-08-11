@@ -4,14 +4,16 @@ using AnimalMaintenance.Accessors.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AnimalMaintenance.Accessors.Migrations
 {
     [DbContext(typeof(AnimalMaintenanceDatabaseContext))]
-    partial class AnimalMaintenanceDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210811185136_EnforceNullAndlengthConstraints")]
+    partial class EnforceNullAndlengthConstraints
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
