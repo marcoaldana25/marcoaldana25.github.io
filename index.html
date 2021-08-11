@@ -105,7 +105,9 @@ layout: default
 		After creating these classes, I then needed to setup the Dependency Injection for this database context. I was able to do this by adding the Microsoft.EntityFrameworkCore Nuget into the Client Layer, and used the following code to inject the db context with a connection string that can be found in the appsettings.json file. <br/>
 		<code>services<br/>
                 &nbsp;&nbsp;&nbsp;.AddDbContext<AnimalMaintenanceDatabaseContext>(<br/>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;options => options.UseSqlServer(configuration.GetConnectionString("AnimalMaintenanceConnectionString")));
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;options => <br/>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;options.UseSqlServer(<br/>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;configuration.GetConnectionString("AnimalMaintenanceConnectionString")));
 		</code>
 		<br/>
 		<br/>
