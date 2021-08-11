@@ -81,5 +81,31 @@ layout: default
 		</ul>
 		One of the standards I've learned within my time at Southern New Hampshire University is the importance of comments within code. Comments act as a quick way for others to understand what a certain function is doing. Although the functions I've introduced here are fairly self-explanatory through naming conventions, I have added method level comments on what these functions do onto the interface that AnimalMaintenanceAccessor.cs inherits from. The reasoning on doing this instead of the actual class itself is that adding the method comments on the interface level allow the comments to appear when implementing it in the code. The interface for AnimalMaintenanceAccessor.cs can be seen <a href="https://github.com/marcoaldana25/marcoaldana25.github.io/blob/main/AnimalMaintenance/AnimalMaintenance_NetCore/3.%20Accessors/AnimalMaintenance.Accessors/IAnimalMaintenanceAccessor.cs">here.</a>
 	</p>
+	<h2>Narrative Three: Databases</h2>
+	<p>
+		For narrative three which covers the updates related to databases for our final project, I've continued my effort to re-engineer the CS-340 Client/Server Development application into a .Net Core 3.1 app. This narrative contains what I believe to be the largest chunk of work from the original structure of CS-340's AnimalMaintenance Python script. 
+		
+		<h4>Entity Framework Core</h4>
+		Animal Maintenance makes use of Entity Framework Core to handle transactions to the AnimalMaintenance database. The entire database has been created and maintained using Entity Framework's Code First approach. This approach allows a developer to create the objects referred to as 'Entities' first, creating any constraints necessary upfront using data annotations (NotNull, Length, etc.). The Animal Entity with its respective data annotations to describe contraints can bee seen here.<br/> <img src="./Documentation/AnimalEntity.png" width="300" height="500" style="display: block; margin-left: auto; margin-right: auto; width=50%;"/>
+		The source code for this can also be viewed from within GitHub here - <a href="https://github.com/marcoaldana25/marcoaldana25.github.io/blob/main/AnimalMaintenance/AnimalMaintenance_NetCore/3.%20Accessors/AnimalMaintenance.Accessors/Entities/Animal.cs">Animal Entity</a>.<br/>
+		
+		More information on working with Entity Framework Core can be found from Microsoft documentation here <a href="https://docs.microsoft.com/en-us/ef/core/">Working with Entity Framework Core</a>
+		
+		<h4>Setting up a new Databse instance</h4>
+		This section will briefly cover the steps I took to create this AnimalMaintenance database structure. First, I installed the necessary NuGet packages to work with EntityFrameworkCore to the Accessors layer of the application. The NuGets I have installed are as follows:
+		<ul>
+			<li>Microsoft.EntityFrameworkCore - Version 5.0.9</li>
+			<li>Microsoft.EntityFrameworkCore.Relational - Version 5.0.9</li>
+			<li>Microsoft.EntityFrameworkCore.SqlServer - Version 5.0.9</li>
+			<li>Microsoft.EntityFrameworkCore.Tools - Version 5.0.9</li>
+		</ul>
+		I created an Entity class with the necessary data annotations seen in the Entity screenshot above. I then created a class that extends off of EntityFrameworkCore's DbContext class. This context class should specify any database tables as DbSet<EntityType> so that EntityFrameworkCore will know to create database tables for these DbSets. A screenshot of the AnimalMaintenanceDbContext can be seen here <img src="./Documentation/AnimalDbContext.png" width="650" height="300" style="display: block; margin-left: auto; margin-right: auto; width=50%;"/><br/></br>
+		Here is a link to the actual class as hosted in GitHub - <a href="https://github.com/marcoaldana25/marcoaldana25.github.io/blob/main/AnimalMaintenance/AnimalMaintenance_NetCore/3.%20Accessors/AnimalMaintenance.Accessors/Database/AnimalMaintenanceDatabaseContext.cs">AnimalMaintenanceDbContext.cs</a>
+	</p>
+	<p>
+		<h4>Azure Data Studio</h4>
+		The connection string when working with this application is set to connect to a users Local DB using the collowing source <strong>MSSQL/LocalDb</strong>. To verify that the database was created correctly, I downloaded Azure Data Studio which is a lightweight tool built off the same foundation as Visual Studio Code. One could setup using SQL Server Management Studio as well, but I like Azure Data Studio because it is quick and lightweight. More information on Azure Data Studio can be seen here - <a href="https://docs.microsoft.com/en-us/sql/azure-data-studio/what-is-azure-data-studio?view=sql-server-ver15">What is Azure Data Studio?</a><br/>
+		</br>
+		After logging in using the LocalDb credentials, I was able to view the Animals database structure with the same constrains I've identified in the Entity class shown above. Here is a screenshot of the Animal DB in Azure Data Studio: <img src="./Documentation/AnimalDb.png" width="325" height="400" style="display: block; margin-left: auto; margin-right: auto; width=50%;"/>
+	</p>
 </body>
-
